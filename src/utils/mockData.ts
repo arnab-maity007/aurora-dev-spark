@@ -1,9 +1,7 @@
-
 import { 
-  Basketball, 
-  Football, 
-  Swords, 
-  GolfClub, 
+  CircleDot, 
+  Dumbbell, 
+  Sword, 
   Trophy, 
   Timer, 
   Star, 
@@ -316,11 +314,11 @@ export const generateRandomCommentary = (game: Game): CommentaryItem => {
 
 export const getGameIcon = (type: GameType) => {
   switch (type) {
-    case "basketball": return Basketball;
-    case "football": return Football;
-    case "hockey": return Swords;
-    case "soccer": return GolfClub;
-    default: return Basketball;
+    case "basketball": return CircleDot;
+    case "football": return Dumbbell;
+    case "hockey": return Sword;
+    case "soccer": return CircleDot;
+    default: return CircleDot;
   }
 };
 
