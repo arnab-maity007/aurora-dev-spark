@@ -60,6 +60,42 @@ export type Database = {
         }
         Relationships: []
       }
+      games: {
+        Row: {
+          away_score: number
+          away_team: string
+          game_date: string
+          highlights: Json | null
+          home_score: number
+          home_team: string
+          id: string
+          sport_type: string
+          summary: string | null
+        }
+        Insert: {
+          away_score?: number
+          away_team: string
+          game_date?: string
+          highlights?: Json | null
+          home_score?: number
+          home_team: string
+          id?: string
+          sport_type: string
+          summary?: string | null
+        }
+        Update: {
+          away_score?: number
+          away_team?: string
+          game_date?: string
+          highlights?: Json | null
+          home_score?: number
+          home_team?: string
+          id?: string
+          sport_type?: string
+          summary?: string | null
+        }
+        Relationships: []
+      }
       ngos: {
         Row: {
           category: string | null
@@ -135,6 +171,36 @@ export type Database = {
           updated_at?: string | null
           username?: string
           youtube_url?: string | null
+        }
+        Relationships: []
+      }
+      team_stats: {
+        Row: {
+          historical_data: Json | null
+          id: string
+          last_updated: string | null
+          logo_url: string | null
+          sport_type: string
+          team_name: string
+          win_percentage: number | null
+        }
+        Insert: {
+          historical_data?: Json | null
+          id?: string
+          last_updated?: string | null
+          logo_url?: string | null
+          sport_type: string
+          team_name: string
+          win_percentage?: number | null
+        }
+        Update: {
+          historical_data?: Json | null
+          id?: string
+          last_updated?: string | null
+          logo_url?: string | null
+          sport_type?: string
+          team_name?: string
+          win_percentage?: number | null
         }
         Relationships: []
       }

@@ -8,13 +8,25 @@ import {
   generateInitialCommentary 
 } from "@/utils/mockData";
 import { toast } from "sonner";
+import { sportTypes } from "@/utils/sportData";
 
 const COMMENTARY_UPDATE_INTERVAL = 3000; // 3 seconds
 const SCORE_UPDATE_INTERVAL = 15000; // 15 seconds
 
 export function useLiveFeed() {
-  const [games, setGames] = useState<Game[]>(mockGames);
-  const [selectedGameId, setSelectedGameId] = useState<string>(mockGames[0]?.id || "");
+  // Update sport types in mockGames
+  const updatedGames = mockGames.map(game => {
+    // Randomly assign one of our supported sports to each game
+    const sportKeys = Object.keys(sportTypes);
+    const randomSport = sportKeys[Math.floor(Math.random() * sportKeys.length)];
+    return {
+      ...game,
+      type: randomSport
+    };
+  });
+
+  const [games, setGames] = useState<Game[]>(updatedGames);
+  const [selectedGameId, setSelectedGameId] = useState<string>(updatedGames[0]?.id || "");
   const [commentary, setCommentary] = useState<CommentaryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,7 +36,7 @@ export function useLiveFeed() {
     
     // Simulate API loading
     const timer = setTimeout(() => {
-      const initialCommentary = generateInitialCommentary(mockGames);
+      const initialCommentary = generateInitialCommentary(updatedGames);
       setCommentary(initialCommentary);
       setIsLoading(false);
     }, 1000);
