@@ -5,7 +5,8 @@ import {
   CommentaryItem, 
   mockGames, 
   generateRandomCommentary, 
-  generateInitialCommentary 
+  generateInitialCommentary,
+  GameType
 } from "@/utils/mockData";
 import { toast } from "sonner";
 import { sportTypes } from "@/utils/sportData";
@@ -18,7 +19,9 @@ export function useLiveFeed() {
   const updatedGames = mockGames.map(game => {
     // Randomly assign one of our supported sports to each game
     const sportKeys = Object.keys(sportTypes);
-    const randomSport = sportKeys[Math.floor(Math.random() * sportKeys.length)];
+    const randomSportKey = sportKeys[Math.floor(Math.random() * sportKeys.length)];
+    // Ensure we're assigning a valid GameType
+    const randomSport = randomSportKey as GameType;
     return {
       ...game,
       type: randomSport
@@ -36,7 +39,7 @@ export function useLiveFeed() {
     
     // Simulate API loading
     const timer = setTimeout(() => {
-      const initialCommentary = generateInitialCommentary(updatedGames);
+      const initialCommentary = generateInitialCommentary(games);
       setCommentary(initialCommentary);
       setIsLoading(false);
     }, 1000);

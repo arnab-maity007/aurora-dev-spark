@@ -1,21 +1,21 @@
 
-import { Cricket, Dumbbell, Football, Hockey } from "lucide-react";
+import { CircleDot, Dumbbell, Award, Trophy } from "lucide-react";
 
 // Define your sports types and corresponding icons
 export const sportTypes = {
   cricket: {
     name: "Cricket",
-    icon: Cricket,
+    icon: CircleDot, // Using CircleDot as cricket icon placeholder
     color: "#1d9bf0"
   },
   football: {
     name: "Football",
-    icon: Football,
+    icon: Trophy, // Using Trophy as football icon placeholder
     color: "#ff5500"
   },
   hockey: {
     name: "Hockey",
-    icon: Hockey,
+    icon: Award, // Using Award as hockey icon placeholder
     color: "#00cc99"
   },
   basketball: {

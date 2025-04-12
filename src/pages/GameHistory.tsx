@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { Calendar, CalendarClock, ArrowLeft, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { Game, getGameIcon } from "@/utils/mockData";
+import { Game, GameType, GameStatus, getGameIcon } from "@/utils/mockData";
 import { Input } from "@/components/ui/input";
 
 interface GameHistoryProps {}
@@ -32,20 +31,22 @@ const GameHistory: React.FC<GameHistoryProps> = () => {
           // Format data to match the Game interface
           const formattedGames = data.map(game => ({
             id: game.id,
-            type: game.sport_type,
+            type: game.sport_type as GameType,
             homeTeam: {
               id: `home-${game.id}`,
               name: game.home_team,
               abbreviation: game.home_team.substring(0, 3).toUpperCase(),
-              score: game.home_score
+              score: game.home_score,
+              logoUrl: "" // Add empty logoUrl
             },
             awayTeam: {
               id: `away-${game.id}`,
               name: game.away_team,
               abbreviation: game.away_team.substring(0, 3).toUpperCase(),
-              score: game.away_score
+              score: game.away_score,
+              logoUrl: "" // Add empty logoUrl
             },
-            status: "completed",
+            status: "finished" as GameStatus,
             period: "Final",
             clock: "",
             venue: "Stadium",
@@ -60,45 +61,51 @@ const GameHistory: React.FC<GameHistoryProps> = () => {
           setGames([
             {
               id: "history-1",
-              type: "basketball",
+              type: "basketball" as GameType,
               homeTeam: {
                 id: "lakers",
                 name: "Lakers",
                 abbreviation: "LAL",
-                score: 108
+                score: 108,
+                logoUrl: "" // Add empty logoUrl
               },
               awayTeam: {
                 id: "warriors",
                 name: "Warriors",
                 abbreviation: "GSW",
-                score: 104
+                score: 104,
+                logoUrl: "" // Add empty logoUrl
               },
-              status: "completed",
+              status: "finished" as GameStatus,
               period: "Final",
               clock: "",
               venue: "Staples Center",
-              date: "2025-04-05"
+              date: "2025-04-05",
+              summary: "Lakers won in a close game"
             },
             {
               id: "history-2",
-              type: "cricket",
+              type: "cricket" as GameType,
               homeTeam: {
                 id: "india",
                 name: "India",
                 abbreviation: "IND",
-                score: 320
+                score: 320,
+                logoUrl: "" // Add empty logoUrl
               },
               awayTeam: {
                 id: "australia",
                 name: "Australia",
                 abbreviation: "AUS",
-                score: 283
+                score: 283,
+                logoUrl: "" // Add empty logoUrl
               },
-              status: "completed",
+              status: "finished" as GameStatus,
               period: "Final",
               clock: "",
               venue: "Melbourne Cricket Ground",
-              date: "2025-04-02"
+              date: "2025-04-02",
+              summary: "India won by 37 runs"
             }
           ]);
         }

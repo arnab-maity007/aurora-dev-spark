@@ -1,7 +1,7 @@
 import { 
   CircleDot, 
   Dumbbell, 
-  Sword, 
+  Award, 
   Trophy, 
   Timer, 
   Star, 
@@ -18,12 +18,12 @@ export type Team = {
   name: string;
   abbreviation: string;
   score: number;
-  logoUrl: string; // In a real app, this would be an actual logo
+  logoUrl?: string; // Make logoUrl optional
 };
 
-export type GameType = "basketball" | "football" | "hockey" | "soccer";
+export type GameType = "basketball" | "football" | "hockey" | "cricket";
 
-export type GameStatus = "live" | "scheduled" | "finished";
+export type GameStatus = "live" | "scheduled" | "finished" | "completed";
 
 export type Game = {
   id: string;
@@ -34,6 +34,8 @@ export type Game = {
   clock: string;
   type: GameType;
   venue: string;
+  date?: string; // Add date property
+  summary?: string; // Add summary property
 };
 
 export type CommentaryType = 
@@ -152,7 +154,7 @@ export const mockGames: Game[] = [
     status: "live",
     period: "1st",
     clock: "32:15",
-    type: "soccer",
+    type: "football",
     venue: "Etihad Stadium",
   },
 ];
@@ -314,10 +316,10 @@ export const generateRandomCommentary = (game: Game): CommentaryItem => {
 
 export const getGameIcon = (type: GameType) => {
   switch (type) {
-    case "basketball": return CircleDot;
-    case "football": return Dumbbell;
-    case "hockey": return Sword;
-    case "soccer": return CircleDot;
+    case "basketball": return Dumbbell;
+    case "football": return Trophy;
+    case "hockey": return Award;
+    case "cricket": return CircleDot;
     default: return CircleDot;
   }
 };
