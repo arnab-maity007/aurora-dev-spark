@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Welcome to Live Sports Commentry feed
 
 ## Project info
 
